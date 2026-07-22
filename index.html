@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jonathan Zietsman — CV</title>
+<meta name="description" content="Virtual CV of Jonathan Zietsman, IT student.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0a0d0d;
+    --bg-panel:#0f1414;
+    --bg-panel-2:#131a1a;
+    --line:#1e2828;
+    --turquoise:#35e0c4;
+    --turquoise-dim:#1c8f7c;
+    --turquoise-glow:rgba(53,224,196,0.12);
+    --text:#e9efee;
+    --text-dim:#8ea3a0;
+    --text-faint:#516260;
+    --radius:2px;
+    --display:'Space Grotesk', sans-serif;
+    --body:'Inter', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.25;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--turquoise); color:#04100d;}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--turquoise);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:0 28px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:10;
+    backdrop-filter:blur(10px);
+    background:rgba(10,13,13,0.82);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:880px;
+    margin:0 auto;
+    padding:16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .nav-logo{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--turquoise);
+    letter-spacing:0.02em;
+  }
+  .nav-logo span{color:var(--text-faint);}
+  .nav-links{
+    display:flex;
+    gap:28px;
+    list-style:none;
+    font-family:var(--mono);
+    font-size:13px;
+  }
+  .nav-links a{
+    color:var(--text-dim);
+    transition:color 0.2s ease;
+    position:relative;
+  }
+  .nav-links a:hover{color:var(--turquoise);}
+  .nav-toggle{display:none;}
+
+  @media (max-width:640px){
+    .nav-links{
+      position:fixed;
+      top:57px; left:0; right:0;
+      flex-direction:column;
+      gap:0;
+      background:var(--bg-panel);
+      border-bottom:1px solid var(--line);
+      max-height:0;
+      overflow:hidden;
+      transition:max-height 0.3s ease;
+    }
+    .nav-links.open{max-height:320px;}
+    .nav-links li{border-top:1px solid var(--line);}
+    .nav-links a{display:block; padding:14px 28px;}
+    .nav-toggle{
+      display:block;
+      background:none;
+      border:1px solid var(--line);
+      color:var(--turquoise);
+      font-family:var(--mono);
+      font-size:12px;
+      padding:6px 10px;
+      cursor:pointer;
+    }
+  }
+
+  /* ---------- ELEMENTS ---------- */
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--turquoise-dim);
+    letter-spacing:0.04em;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:16px; height:1px;
+    background:var(--turquoise-dim);
+  }
+
+  section{
+    padding:88px 0;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  section:last-of-type{border-bottom:none;}
+
+  h2{
+    font-family:var(--display);
+    font-size:clamp(22px, 3.2vw, 30px);
+    font-weight:600;
+    margin-bottom:36px;
+    color:var(--text);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:88vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:60px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-tag{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--turquoise);
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .cursor{
+    display:inline-block;
+    width:8px; height:16px;
+    background:var(--turquoise);
+    animation:blink 1.1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(38px, 8vw, 68px);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--turquoise);
+  }
+  .hero p{
+    max-width:520px;
+    color:var(--text-dim);
+    font-size:16px;
+    margin-bottom:34px;
+  }
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:12px 22px;
+    border-radius:var(--radius);
+    border:1px solid var(--turquoise-dim);
+    color:var(--turquoise);
+    transition:all 0.2s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .btn:hover{
+    background:var(--turquoise-glow);
+    border-color:var(--turquoise);
+  }
+  .btn.solid{
+    background:var(--turquoise);
+    color:#04100d;
+    border-color:var(--turquoise);
+    font-weight:500;
+  }
+  .btn.solid:hover{
+    background:#4bf0d4;
+  }
+
+  .hero-meta{
+    margin-top:56px;
+    display:flex;
+    gap:32px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-faint);
+  }
+  .hero-meta strong{color:var(--text-dim); font-weight:500;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:48px;
+  }
+  .about-grid p{color:var(--text-dim); margin-bottom:16px; max-width:52ch;}
+  .facts{
+    font-family:var(--mono);
+    font-size:13px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .facts div{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px dashed var(--line);
+    padding-bottom:10px;
+  }
+  .facts span:first-child{color:var(--text-faint);}
+  .facts span:last-child{color:var(--text);}
+
+  @media (max-width:640px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- EDUCATION / EXPERIENCE ---------- */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+  }
+  .t-item{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:24px;
+    padding:24px 0;
+    border-top:1px solid var(--line);
+  }
+  .t-item:first-child{border-top:none;}
+  .t-date{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--turquoise-dim);
+    padding-top:2px;
+  }
+  .t-title{
+    font-family:var(--display);
+    font-size:17px;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .t-sub{
+    font-size:13px;
+    color:var(--text-dim);
+    margin-bottom:8px;
+  }
+  .t-desc{
+    font-size:14px;
+    color:var(--text-dim);
+    max-width:60ch;
+  }
+  @media (max-width:640px){
+    .t-item{grid-template-columns:1fr; gap:6px;}
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .project{
+    background:var(--bg);
+    padding:28px;
+    transition:background 0.2s ease;
+  }
+  .project:hover{background:var(--bg-panel);}
+  .project-num{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--turquoise-dim);
+    margin-bottom:14px;
+  }
+  .project h3{
+    font-family:var(--display);
+    font-size:18px;
+    margin-bottom:8px;
+  }
+  .project p{
+    font-size:14px;
+    color:var(--text-dim);
+    margin-bottom:16px;
+  }
+  .stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:16px;
+  }
+  .stack span{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--turquoise);
+    border:1px solid var(--turquoise-dim);
+    padding:3px 8px;
+    border-radius:var(--radius);
+  }
+  .project-links{
+    display:flex;
+    gap:16px;
+    font-family:var(--mono);
+    font-size:12px;
+  }
+  .project-links a{color:var(--text-dim); border-bottom:1px solid transparent;}
+  .project-links a:hover{color:var(--turquoise); border-color:var(--turquoise);}
+
+  .project-grid .project:last-child:nth-child(odd){
+    grid-column:1 / -1;
+  }
+
+  @media (max-width:640px){
+    .project-grid{grid-template-columns:1fr;}
+    .project-grid .project:last-child:nth-child(odd){
+      grid-column:auto;
+    }
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-cols{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));
+    gap:32px;
+  }
+  .skills-cols h4{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-faint);
+    margin-bottom:16px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .skills-cols ul{list-style:none;}
+  .skills-cols li{
+    font-size:14px;
+    color:var(--text-dim);
+    padding:8px 0;
+    border-top:1px solid var(--line);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .skills-cols li:first-child{border-top:none;}
+  .skills-cols li::before{
+    content:'';
+    width:6px;height:6px;
+    background:var(--turquoise-dim);
+    flex-shrink:0;
+  }
+  @media (max-width:640px){
+    .skills-cols{grid-template-columns:1fr; gap:24px;}
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    text-align:left;
+  }
+  .contact h2{margin-bottom:16px;}
+  .contact p{
+    color:var(--text-dim);
+    max-width:48ch;
+    margin-bottom:32px;
+  }
+  .contact-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+
+  footer{
+    padding:32px 0 60px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-faint);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  footer a{color:var(--text-dim);}
+  footer a:hover{color:var(--turquoise);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">~/<span>Nathan</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">menu</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">about</a></li>
+      <li><a href="#education">education</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#interests">interests</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">$ whoami<span class="cursor"></span></div>
+    <h1>Jonathan Zietsman<br><em>IT Student</em></h1>
+    <p>Motivated 3rd-year BSc Information Technology student with a strong pull toward data engineering — currently working towards the Microsoft Fabric Data Engineer Associate (DP-700) certification. I like turning ideas into working systems, from IoT lighting builds to relational databases.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn solid">View projects</a>
+      <a href="CV.pdf" class="btn">Download resume ↓</a>
+    </div>
+    <div class="hero-meta">
+      <div><strong>Location</strong> — Potchefstroom, South Africa</div>
+      <div><strong>Status</strong> — Open to internships</div>
+      <div><strong>Year</strong> — 3rd Year BSc IT</div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="eyebrow">01 / about</div>
+    <h2>A little about me</h2>
+    <div class="about-grid">
+      <div>
+        <p>I've been tinkering with technology since I was old enough to switch on a PC, and that hands-on curiosity is still what drives most of what I build outside of class. I have a strong foundation in programming, problem-solving, critical thinking, and attention to detail, with good teamwork and communication skills built up from real work experience.</p>
+        <p>I have a solid grounding in SQL and data modelling (ERD, EERD, DFD, UML, Chen & Crow notation), and I'm currently working towards the Microsoft Fabric Data Engineer Associate (DP-700) certification, picking up KQL and PySpark along the way. Outside of coursework I build IoT and electronics projects for fun — soldering iron included.</p>
+      </div>
+      <div class="facts">
+        <div><span>Degree</span><span>BSc Information Technology</span></div>
+        <div><span>Year</span><span>3rd year</span></div>
+        <div><span>Average GPA</span><span>71.35%</span></div>
+        <div><span>Focus</span><span>Data engineering</span></div>
+        <div><span>In progress</span><span>DP-700 certification</span></div>
+        <div><span>GitHub</span><span>NathanFE05</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="eyebrow">02 / education</div>
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-date">2024 — Present</div>
+        <div>
+          <div class="t-title">BSc Information Technology</div>
+          <div class="t-sub">North-West University, Potchefstroom · 3rd year</div>
+          <div class="t-desc">Average GPA: 71.35%. Coursework spans systems analysis & design, database development, and application development across multiple languages. Top achiever in group projects.</div>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">Matric</div>
+        <div>
+          <div class="t-title">National Senior Certificate</div>
+          <div class="t-sub">High School</div>
+          <div class="t-desc">Graduated with 72%. Top 3 IT student in the grade, and awarded Half Colours for the 2022 IT competition.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="eyebrow">03 / experience</div>
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-date">School holidays · 4 yrs</div>
+        <div>
+          <div class="t-title">Runner & Waiter</div>
+          <div class="t-sub">Stonehaven on Vaal — 4-star country resort</div>
+          <div class="t-desc">~15 months of accumulated experience gathered over school vacations spread across 4 years. Built strong communication, high-stress operational proficiency, commitment, teamwork, and work ethic.</div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:28px; font-size:14px; color:var(--text-dim); max-width:60ch;">I don't have paid IT work experience yet — but between coursework, personal projects, and continuous self-study (SQL, data modelling, multiple languages, and an in-progress Microsoft certification) I've built a solid technical base, and I'm actively looking for an internship to put it to work.</p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="eyebrow">04 / projects</div>
+    <h2>Selected projects</h2>
+    <div class="project-grid">
+      <div class="project">
+        <div class="project-num">01</div>
+        <h3>ESP32 LED Staircase</h3>
+        <p>A motion-activated LED lighting system for a staircase, built around an ESP32 microcontroller with two PIR sensors and 300 addressable LEDs. Wiring, soldering, and installation done end-to-end, with a web server for control.</p>
+        <div class="stack"><span>C++</span><span>ESP32</span><span>WS2812B</span><span>Electronics</span></div>
+        <div class="project-links">
+          <a href="https://github.com/NathanFE05/ESP-32-LED-Staircase">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="project">
+        <div class="project-num">02</div>
+        <h3>Locked-In</h3>
+        <p>A desktop job-management system built for a Systems Analysis & Design module, connecting community employers with prisoners who have matching skills — covering job matching, applications, and reporting.</p>
+        <div class="stack"><span>C#</span><span>.NET</span><span>SQL</span><span>Team project</span></div>
+        <div class="project-links">
+          <a href="https://github.com/CMPG223-Group-45/LockedIn">GitHub ↗</a>
+        </div>
+      </div>
+      <div class="project">
+        <div class="project-num">03</div>
+        <h3>Fizzer SQL</h3>
+        <p>A relational database project covering schema design, data population, views, and query writing — built as part of a group database module.</p>
+        <div class="stack"><span>PL/SQL</span><span>Database design</span><span>Team project</span></div>
+        <div class="project-links">
+          <a href="https://github.com/CMPG223-Group-45/Fizzer-SQL">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="eyebrow">05 / skills</div>
+    <h2>Skills & tools</h2>
+    <div class="skills-cols">
+      <div>
+        <h4>Languages</h4>
+        <ul>
+          <li>SQL</li>
+          <li>Python</li>
+          <li>Java</li>
+          <li>C / C++ / C#</li>
+          <li>HTML & CSS</li>
+          <li>Delphi</li>
+          <li>Lua</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Data Modelling</h4>
+        <ul>
+          <li>UML</li>
+          <li>ERD & EERD</li>
+          <li>DFD</li>
+          <li>Chen & Crow notation</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Tools & Platforms</h4>
+        <ul>
+          <li>Git & GitHub</li>
+          <li>Microsoft Office suite</li>
+          <li>Windows machine support</li>
+          <li>Kali Linux (pen-testing)</li>
+          <li>PySpark & KQL (in progress)</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Soft Skills</h4>
+        <ul>
+          <li>Communication</li>
+          <li>Teamwork</li>
+          <li>Critical thinking</li>
+          <li>Logical thinking</li>
+          <li>Adaptability</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERESTS -->
+  <section id="interests">
+    <div class="eyebrow">06 / interests</div>
+    <h2>Beyond the screen</h2>
+    <p style="color:var(--text-dim); max-width:60ch; margin-bottom:24px;">Currently into: software development, micro-controllers, 3D printing with added electronics, home automation, gaming server hosting, and projection mapping.</p>
+    <div class="stack" style="margin-bottom:0;">
+      <span>Low-power electronics</span>
+      <span>Shade tree mechanic</span>
+      <span>Rock climbing</span>
+      <span>Road trips</span>
+      <span>Films & shows</span>
+      <span>Photography</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="eyebrow">07 / contact</div>
+    <h2>Let's talk</h2>
+    <p>I'm currently looking for internship opportunities and open to collaborating on interesting projects. The fastest way to reach me is by email or phone.</p>
+    <div class="contact-links">
+      <a href="mailto:zietsmannathan@gmail.com" class="btn solid">Email me ↗</a>
+      <a href="tel:+27671284115" class="btn">067 128 4115</a>
+      <a href="https://github.com/NathanFE05" class="btn">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/jonathan-zietsman-a784b0328/" class="btn">LinkedIn ↗</a>
+    </div>
+    <p style="margin-top:24px; font-family:var(--mono); font-size:12px; color:var(--text-faint);">Potchefstroom, South Africa</p>
+  </section>
+
+  <footer>
+    <span>© 2026 Jonathan Zietsman — built with HTML & CSS, hosted on GitHub Pages</span>
+    <span><a href="#top">back to top ↑</a></span>
+  </footer>
+
+</div>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', false);
+    });
+  });
+</script>
+
+</body>
+</html>
