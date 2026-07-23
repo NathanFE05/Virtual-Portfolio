@@ -1,7 +1,7 @@
 
 # Virtual Portfolio
 
-<img align="right" width="100" alt="QR" src="https://github.com/user-attachments/assets/cf295901-0644-4a14-807d-503e55cfff45" />
+<img align="right" width="150" alt="QR" src="https://github.com/user-attachments/assets/cf295901-0644-4a14-807d-503e55cfff45" />
 
 An interactive, web-based CV showcasing my education, projects, and technical skills.
 
